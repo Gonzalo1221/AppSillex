@@ -126,7 +126,7 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 20), // Un pequeño espacio entre los botones
+                const SizedBox(width: 10), // Un pequeño espacio entre los botones
                 TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -146,7 +146,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ],
             ),
-            const SizedBox(width: 50), // Un pequeño espacio entre los botones
+            const SizedBox(height: 30), // Un pequeño espacio entre los botones
             TermsAndConditionsWidget(),
           ],
         ),
