@@ -12,6 +12,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
+      debugShowCheckedModeBanner: false,
       home: LoginPage(),
     );
   }
@@ -31,7 +32,7 @@ class LoginPage extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             // Agrega la imagen como fondo utilizando Image.asset
-            Container(
+            SizedBox(
               height: 400,
               width: 400,
               child: Image.asset(
@@ -82,7 +83,7 @@ class LoginPage extends StatelessWidget {
                   top: 70.0), // Ajustar los valores para mover el botón
               child: ElevatedButton(
                 style: ElevatedButton.styleFrom(
-                  primary: Colors.blue[200],
+                  backgroundColor: Colors.blue[200],
                   shape: RoundedRectangleBorder(
                     borderRadius: BorderRadius.circular(
                         40), // Define el radio de las esquinas
@@ -94,7 +95,8 @@ class LoginPage extends StatelessWidget {
                   Navigator.push(
                     context,
                     MaterialPageRoute(
-                        builder: (context) => CreateAccountMenuprincipal()),
+                        builder: (context) =>
+                            const CreateAccountMenuprincipal()),
                   );
                 },
                 child: const Text(
@@ -126,7 +128,8 @@ class LoginPage extends StatelessWidget {
                     ),
                   ),
                 ),
-                const SizedBox(width: 10), // Un pequeño espacio entre los botones
+                const SizedBox(
+                    width: 10), // Un pequeño espacio entre los botones
                 TextButton(
                   onPressed: () {
                     Navigator.push(
@@ -147,7 +150,7 @@ class LoginPage extends StatelessWidget {
               ],
             ),
             const SizedBox(height: 30), // Un pequeño espacio entre los botones
-            TermsAndConditionsWidget(),
+            const TermsAndConditionsWidget(),
           ],
         ),
       ),
@@ -157,10 +160,16 @@ class LoginPage extends StatelessWidget {
 
 class TermsAndConditionsWidget extends StatelessWidget {
   final String termsText = 'Términos y condiciones';
-  final String termsUrl ='https://www.example.com'; // Reemplaza con la URL real de tus términos y condiciones
+  final String termsUrl = 'https://www.example.com';
+
+  const TermsAndConditionsWidget(
+      {super.key}); // Reemplaza con la URL real de tus términos y condiciones
 
   _launchURL() async {
-    if (await canLaunch(termsUrl)) {
+    // ignore: deprecated_member_use
+    var canLaunch2 = canLaunch(termsUrl);
+    if (await canLaunch2) {
+      // ignore: deprecated_member_use
       await launch(termsUrl);
     } else {
       throw 'No se pudo abrir la URL $termsUrl';
@@ -207,11 +216,19 @@ class CreateAccountRegistro extends StatelessWidget {
 
   CreateAccountRegistro({super.key});
 
+  List listgenero = ['Hombre', 'Mujer', 'Otro'];
+  List listciudad = ['barranquilla', 'Soledad', 'bogota'];
+  List listtipoidentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       key: _formKey,
       appBar: AppBar(
+        shape: RoundedRectangleBorder(
+          borderRadius:
+              BorderRadius.circular(60), // Define el radio de las esquinas
+        ),
         title: const Text('Registro'),
         actions: [
           ElevatedButton(
@@ -222,12 +239,13 @@ class CreateAccountRegistro extends StatelessWidget {
               ); // Acción al hacer clic en el botón
             },
             style: ElevatedButton.styleFrom(
-                backgroundColor: Colors.white,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(
-                      30), // Define el radio de las esquinas
-                ),
-                fixedSize: const Size(10, 40)),
+              fixedSize: const Size(100, 50),
+              backgroundColor: Colors.white,
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(
+                    30), // Define el radio de las esquinas
+              ),
+            ),
             child: const Text(
               'omitir',
               style: TextStyle(color: Colors.black),
@@ -250,7 +268,7 @@ class CreateAccountRegistro extends StatelessWidget {
                 ),
                 TextFormField(
                   controller: _nombreController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Ingrese su nombre',
                   ),
                   validator: (value) {
@@ -315,15 +333,35 @@ class CreateAccountRegistro extends StatelessWidget {
                   'Genero',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-
+                DropdownButtonFormField(
+                  decoration:
+                      const InputDecoration(hintText: 'Seleccione una opcion'),
+                  items: listgenero.map((genero) {
+                    return DropdownMenuItem(
+                      value: genero,
+                      child: Text(genero),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    print(value);
+                  },
+                ),
                 const Text(
                   'Ciudad',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
-                  ),
+                DropdownButtonFormField(
+                  decoration:
+                      const InputDecoration(hintText: 'Seleccione una opcion'),
+                  items: listciudad.map((ciudad) {
+                    return DropdownMenuItem(
+                      value: ciudad,
+                      child: Text(ciudad),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    print(value);
+                  },
                 ),
                 const Text(
                   'Fecha de nacimiento',
@@ -338,10 +376,18 @@ class CreateAccountRegistro extends StatelessWidget {
                   'Tipo de identificacion',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
-                  ),
+                DropdownButtonFormField(
+                  decoration:
+                      const InputDecoration(hintText: 'Seleccione una opcion'),
+                  items: listtipoidentificacion.map((tipoidentificacion) {
+                    return DropdownMenuItem(
+                      value: tipoidentificacion,
+                      child: Text(tipoidentificacion),
+                    );
+                  }).toList(),
+                  onChanged: (value) {
+                    print(value);
+                  },
                 ),
                 const Text(
                   'Numero de identificacion',
@@ -392,15 +438,6 @@ class CreateAccountRegistro extends StatelessWidget {
     );
   }
 
-//   void _mostraralert(BuildContext context) {
-//   showDialog(
-//       barrierDismissible: false,
-//       context: context,
-//       child: AlertDialog(
-//         title: Text("Hola"),
-//         content: Text("¿Que haces?"),
-//       ));
-// }
   void _showAlertDialog(BuildContext context) {
     showCupertinoModalPopup<void>(
       context: context,
@@ -422,10 +459,12 @@ class CreateAccountRegistro extends StatelessWidget {
 }
 
 class CreateAccountMenuprincipal extends StatelessWidget {
+  const CreateAccountMenuprincipal({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Sillex')),
+      appBar: AppBar(title: const Text('Sillex')),
       body: const Padding(
         padding: EdgeInsets.all(16.0),
         child: Column(
@@ -445,22 +484,77 @@ class CreateAccountMenuprincipal extends StatelessWidget {
 }
 
 class CreateAccountIniciarSesion extends StatelessWidget {
+  final TextEditingController logincorreo = TextEditingController();
+  final ScrollController controller = ScrollController();
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+
+  CreateAccountIniciarSesion({super.key});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Text('Iniciar Sesion')),
-      body: const Padding(
-        padding: EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            Text(
-              'Formulario de Iniciar Sesion',
-              style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-            ),
-            // Aquí puedes agregar campos de texto y widgets adicionales para el formulario de creación de cuenta
-          ],
+      appBar: AppBar(
+          shape: RoundedRectangleBorder(
+            borderRadius:
+                BorderRadius.circular(50), // Define el radio de las esquinas
+          ),
+          title: const Text('Iniciar Sesion')),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Form(
+          key: _formKey,
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              const Text(
+                'Correo',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextFormField(
+                controller:
+                    logincorreo, // Aquí debes usar el controlador logincorreo en lugar de _nombreController, ya que parece ser el controlador que se ha definido
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese su correo',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, ingrese su correo';
+                  }
+                  return null;
+                },
+              ),
+              TextFormField(
+                maxLines: 1,
+                style: const TextStyle(color: Colors.black, fontSize: 16),
+                decoration: const InputDecoration(
+                  labelText: 'Username',
+                  hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
+                  labelStyle: TextStyle(color: Colors.black, fontSize: 16),
+                  hintText: 'Enter UserName',
+                  icon: Icon(Icons.person,
+                      color: Colors.black), // Utiliza un color específico aquí
+                ),
+              ),
+              const Text(
+                'Contraseña',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextFormField(
+                controller:
+                    logincorreo, // Aquí debes usar el controlador logincorreo en lugar de _nombreController, ya que parece ser el controlador que se ha definido
+                decoration: const InputDecoration(
+                  hintText: 'Ingrese su contraseña',
+                ),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, ingrese su contraseña';
+                  }
+                  return null;
+                },
+              ),
+            ],
+          ),
         ),
       ),
     );
