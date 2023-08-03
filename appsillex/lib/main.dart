@@ -101,7 +101,7 @@ class LoginPage extends StatelessWidget {
                 },
                 child: const Text(
                   'Explorar',
-                  style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
+                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                 ),
               ),
             ),
@@ -213,6 +213,7 @@ class CreateAccountRegistro extends StatelessWidget {
   final TextEditingController _numeroIdentificacionController =
       TextEditingController();
   final TextEditingController _celularController = TextEditingController();
+  final TextEditingController _dateController = TextEditingController();
 
   CreateAccountRegistro({super.key});
 
@@ -367,11 +368,18 @@ class CreateAccountRegistro extends StatelessWidget {
                   'Fecha de nacimiento',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                const TextField(
-                  decoration: InputDecoration(
-                    hintText: 'Enter your email',
+                const SizedBox(height: 10),
+                TextField(
+                  controller: _dateController,
+                  readOnly: true,
+                  onTap: () => _datePickerDialog(context),
+                  decoration: const InputDecoration(
+                    hintText: 'Selecciona una fecha',
+                    labelText: 'Fecha de nacimiento',
+                    border: OutlineInputBorder(),
                   ),
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Tipo de identificacion',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -436,6 +444,24 @@ class CreateAccountRegistro extends StatelessWidget {
         ),
       ),
     );
+  }
+
+  void _datePickerDialog(BuildContext context) {
+    final DateTime now = DateTime.now();
+    showDatePicker(
+      context: context,
+      initialDate: now,
+      firstDate: DateTime(2000),
+      lastDate: DateTime(2050),
+    ).then((DateTime? onValue) {
+      if (onValue != null) {
+        _dateController.text = _formatDate(onValue);
+      }
+    });
+  }
+
+  String _formatDate(DateTime date) {
+    return '${date.day.toString().padLeft(2, '0')}-${date.month.toString().padLeft(2, '0')}-${date.year.toString()}';
   }
 
   void _showAlertDialog(BuildContext context) {
@@ -524,18 +550,6 @@ class CreateAccountIniciarSesion extends StatelessWidget {
                   return null;
                 },
               ),
-              TextFormField(
-                maxLines: 1,
-                style: const TextStyle(color: Colors.black, fontSize: 16),
-                decoration: const InputDecoration(
-                  labelText: 'Username',
-                  hintStyle: TextStyle(color: Colors.grey, fontSize: 14),
-                  labelStyle: TextStyle(color: Colors.black, fontSize: 16),
-                  hintText: 'Enter UserName',
-                  icon: Icon(Icons.person,
-                      color: Colors.black), // Utiliza un color específico aquí
-                ),
-              ),
               const Text(
                 'Contraseña',
                 style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -553,6 +567,18 @@ class CreateAccountIniciarSesion extends StatelessWidget {
                   return null;
                 },
               ),
+              ElevatedButton(
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                          builder: (context) =>
+                              const CreateAccountMenuprincipal()),
+                    );
+                  },
+                  child: const Text("Iniciar Sesion")
+                  ),
+                  const Text('Si continuas, aceptas los Términos de servicio y la Política de privacidad de Alquiler de Sillas.')
             ],
           ),
         ),
