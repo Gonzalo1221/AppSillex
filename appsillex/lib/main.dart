@@ -2,6 +2,9 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:google_sign_in/google_sign_in.dart';
+import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,8 +36,8 @@ class LoginPage extends StatelessWidget {
           children: [
             // Agrega la imagen como fondo utilizando Image.asset
             SizedBox(
-              height: 400,
-              width: 400,
+              height: 300,
+              width: 300,
               child: Image.asset(
                 'assets/descarga-removebg-preview.png',
                 fit: BoxFit.cover,
@@ -60,7 +63,7 @@ class LoginPage extends StatelessWidget {
                 'Sillas elegantes',
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                  fontSize: 28.0,
+                  fontSize: 24.0,
                 ),
               ),
             ),
@@ -75,7 +78,7 @@ class LoginPage extends StatelessWidget {
                 ),
               ),
             ),
-            const SizedBox(height: 16.0),
+            const SizedBox(height: 6.0),
 
             Padding(
               padding: const EdgeInsets.only(
@@ -513,6 +516,8 @@ class CreateAccountIniciarSesion extends StatelessWidget {
   final TextEditingController logincorreo = TextEditingController();
   final ScrollController controller = ScrollController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final FirebaseAuth _auth = FirebaseAuth.instance;
+  final GoogleSignIn _googleSignIn = GoogleSignIn();
 
   CreateAccountIniciarSesion({super.key});
 
@@ -524,7 +529,7 @@ class CreateAccountIniciarSesion extends StatelessWidget {
             borderRadius:
                 BorderRadius.circular(50), // Define el radio de las esquinas
           ),
-          title: const Text('Iniciar Sesion')),
+          title: const Text('Iniciar Sesion', textAlign: TextAlign.center)),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Form(
@@ -533,9 +538,13 @@ class CreateAccountIniciarSesion extends StatelessWidget {
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
-              const Text(
-                'Correo',
-                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ElevatedButton(
+                onPressed: () => _signInWithGoogle(context),
+                child: Text("Iniciar sesión con Google"),
+              ),
+              ElevatedButton(
+                onPressed: () => _signInWithFacebook(context),
+                child: Text("Iniciar sesión con Facebook"),
               ),
               TextFormField(
                 controller:
@@ -576,13 +585,45 @@ class CreateAccountIniciarSesion extends StatelessWidget {
                               const CreateAccountMenuprincipal()),
                     );
                   },
-                  child: const Text("Iniciar Sesion")
-                  ),
-                  const Text('Si continuas, aceptas los Términos de servicio y la Política de privacidad de Alquiler de Sillas.')
+                  child: const Text("Iniciar Sesion")),
+              const Text(
+                  'Si continuas, aceptas los Términos de servicio y la Política de privacidad de Alquiler de Sillas.')
             ],
           ),
         ),
       ),
     );
+  }
+
+  void _signInWithGoogle(BuildContext context) async {
+    try {
+      final GoogleSignInAccount? googleUser = await _googleSignIn.signIn();
+      if (googleUser != null) {
+        final GoogleSignInAuthentication googleAuth =
+            await googleUser.authentication;
+        final AuthCredential credential = GoogleAuthProvider.credential(
+          accessToken: googleAuth.accessToken,
+          idToken: googleAuth.idToken,
+        );
+        await _auth.signInWithCredential(credential);
+        // Luego de iniciar sesión, puedes navegar a la siguiente pantalla o realizar alguna acción.
+      }
+    } catch (e) {
+      print("Error en inicio de sesión con Google: $e");
+    }
+  }
+
+  void _signInWithFacebook(BuildContext context) async {
+    try {
+      final AccessToken? result = await FacebookAuth.instance.login();
+      if (result != null) {
+        final AuthCredential credential =
+            FacebookAuthProvider.credential(result.token);
+        await _auth.signInWithCredential(credential);
+        // Luego de iniciar sesión, puedes navegar a la siguiente pantalla o realizar alguna acción.
+      }
+    } catch (e) {
+      print("Error en inicio de sesión con Facebook: $e");
+    }
   }
 }
