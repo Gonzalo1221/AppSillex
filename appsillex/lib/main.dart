@@ -67,7 +67,7 @@ class LoginPage extends StatelessWidget {
               child: Text('Explorar'),
             ),
             SizedBox(height: 16.0),
-            TextButton(
+              TextButton(
               onPressed: () {
                 // Navegar a la segunda página cuando se presione "Crear cuenta"
                 Navigator.push(
