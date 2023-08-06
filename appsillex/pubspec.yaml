@@ -32,12 +32,16 @@ dependencies:
     sdk: flutter
 
   cupertino_icons: ^1.0.2
+  url_launcher: ^6.1.12
+  flutter_lints: ^2.0.0
+  firebase_core: ^1.0.0
+  firebase_auth: ^3.3.0
+  google_sign_in: ^5.2.1
+  flutter_facebook_auth: ^3.0.0
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
-
-  flutter_lints: ^2.0.0
 
 # The following section is specific to Flutter packages.
 flutter:
@@ -48,3 +52,5 @@ flutter:
 
   assets:
     - assets/descarga-removebg-preview.png
+    - assets/facebook-emblem.jpg
+    - assets/google.png
