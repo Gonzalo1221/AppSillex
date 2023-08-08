@@ -1,94 +1,13 @@
 import 'package:flutter/material.dart';
 
-// class Menuprincipal extends StatelessWidget {
-//   const Menuprincipal({Key? key}) : super(key: key);
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       body: Padding(
-//         padding: const EdgeInsets.all(16.0),
-//         child: Column(
-//           children: [
-//             Row(
-//               children: [
-//                 const Padding(
-//                   padding: EdgeInsets.only(
-//                     left: 2.0,
-//                     top: 10.0,
-//                   ),
-//                   child: Text(
-//                     'Sillex',
-//                     style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-//                   ),
-//                 ),
-//                 const SizedBox(
-//                     width: 225.0), // Espacio entre el texto y la imagen
-//                 SizedBox(
-//                   height: 30.0,
-//                   width: 30.0,
-//                   child: Image.asset(
-//                     'assets/buscar.png',
-//                   ),
-//                 ),
-//               ],
-//             ),
-//             const SizedBox(height: 70),
-//             const Text(
-//               "Articulo:",
-//               style: TextStyle(fontSize: 26),
-//             ),
-//             const SizedBox(height: 20),
-//             Row(
-//               children: [
-//                 Container(
-//                   margin: const EdgeInsets.only(left: 20.0, top: 10.0),
-//                   height: 250,
-//                   width: 150,
-//                   color: Colors.amber,
-//                 ),
-//                 Container(
-//                   margin: const EdgeInsets.only(left: 50.0, top: 10.0),
-//                   height: 250,
-//                   width: 150,
-//                   color: Colors.amber,
-//                 ),
-//               ],
-//             ),
-//             const SizedBox(height: 20),
-//             Row(
-//               children: [
-//                 Container(
-//                   margin: const EdgeInsets.only(left: 20.0, top: 10.0),
-//                   height: 250,
-//                   width: 150,
-//                   color: Colors.amber,
-//                 ),
-//                 Container(
-//                   margin: const EdgeInsets.only(left: 50.0, top: 10.0),
-//                   height: 250,
-//                   width: 150,
-//                   color: Colors.amber,
-//                 ),
-//               ],
-//             ),
-//           ],
-//         ),
-//       ),
-//     );
-//   }
-// }
-
 class Menuprincipal extends StatefulWidget {
   const Menuprincipal({Key? key}) : super(key: key);
 
   @override
-  _MenuprincipalState createState() =>
-      _MenuprincipalState();
+  _MenuprincipalState createState() => _MenuprincipalState();
 }
 
-class _MenuprincipalState
-    extends State<Menuprincipal> {
+class _MenuprincipalState extends State<Menuprincipal> {
   List<IconData> navbarIcons = [
     Icons.home,
     Icons.shopping_cart_outlined,
@@ -121,7 +40,7 @@ class _MenuprincipalState
               ),
             ],
           ),
-          const SizedBox(height: 70),
+          const SizedBox(height: 33),
           const Text(
             "Articulo:",
             style: TextStyle(fontSize: 26),
@@ -134,12 +53,30 @@ class _MenuprincipalState
                 height: 250,
                 width: 150,
                 color: Colors.amber,
+                  child: Column(
+                  // Usamos Column como contenedor de múltiples hijos
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/packsillas.jpg'),
+                    const Text('Sillas de Comedor'),
+                  ],
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(left: 50.0, top: 10.0),
                 height: 250,
                 width: 150,
                 color: Colors.amber,
+                  child: Column(
+                  // Usamos Column como contenedor de múltiples hijos
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/sillasoficina.png'),
+                    const Text('Sillas de Oficina'),
+                  ],
+                ),
               ),
             ],
           ),
@@ -151,21 +88,70 @@ class _MenuprincipalState
                 height: 250,
                 width: 150,
                 color: Colors.amber,
+                  child: Column(
+                  // Usamos Column como contenedor de múltiples hijos
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/sillaseventos.jpg'),
+                    const Text('Sillas de Evento'),
+                  ],
+                ),
               ),
               Container(
                 margin: const EdgeInsets.only(left: 50.0, top: 10.0),
                 height: 250,
                 width: 150,
                 color: Colors.amber,
-              ),
+                child: Column(
+                  // Usamos Column como contenedor de múltiples hijos
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  children: [
+                    Image.asset('assets/Silla-Gamer-Roja.png'),
+                    const Text('Sillas Gamers'),
+                  ],
+                ),
+              )
             ],
           ),
         ],
       ),
     ),
-    const Center(
-        child: Text("Buy View",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
+    Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        children: [
+          const SizedBox(height: 33),
+          const Text(
+            "Articulo:",
+            style: TextStyle(fontSize: 26),
+          ),
+          const SizedBox(height: 20),
+          Container(
+            margin: const EdgeInsets.only(left: 50.0, top: 10.0),
+            height: 250,
+            width: 150,
+            color: Colors.amber,
+            child: Column(
+              // Usamos Column como contenedor de múltiples hijos
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Image.asset('assets/Silla-Gamer-Roja.png'),
+                Text('Descripción del producto'),
+                ElevatedButton(
+                  onPressed: () {
+                    // Acción al hacer clic en el botón
+                  },
+                  child: Text('Comprar'),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    ),
     const Center(
         child: Text("Profile View",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
@@ -186,7 +172,17 @@ class _MenuprincipalState
       bottomNavigationBar: Container(
         padding: EdgeInsets.only(bottom: 16, left: 12, right: 12, top: 8),
         height: 70,
-        decoration: BoxDecoration(color: appStore.cardColor),
+        decoration: BoxDecoration(
+          color: appStore.cardColor,
+          boxShadow: [
+            BoxShadow(
+              color: Colors.black.withOpacity(0.2),
+              spreadRadius: 50,
+              blurRadius: 50,
+              offset: Offset(0, 3), // Cambia los valores para ajustar la sombra
+            ),
+          ],
+        ),
         child: Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: navbarIcons.map(
@@ -216,7 +212,7 @@ class _MenuprincipalState
                           selectedIndex = i;
                           setState(() {});
                         }),
-                        const SizedBox(width: 15),
+                    const SizedBox(width: 15),
                     (i == selectedIndex)
                         ? Container(
                             padding: EdgeInsets.symmetric(horizontal: 4.0),
@@ -227,8 +223,6 @@ class _MenuprincipalState
                         : Container(),
                   ],
                 ),
-
-                
               );
             },
           ).toList(),
@@ -264,6 +258,6 @@ class AppStore {
     appBarColor = Colors.white;
     iconColor = Color(0xFF212121);
     iconSecondaryColor = Color(0xFFA8ABAD);
-    cardColor = Colors.white;
+    cardColor = Color.fromARGB(255, 251, 251, 251);
   }
 }
