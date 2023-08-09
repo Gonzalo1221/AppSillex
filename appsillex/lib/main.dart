@@ -185,7 +185,6 @@ class TermsAndConditionsWidget extends StatelessWidget {
       // Agregamos el Center para centrar el texto
       child: RichText(
         text: TextSpan(
-          text: 'Acepto los ',
           style: const TextStyle(color: Colors.black),
           children: <TextSpan>[
             TextSpan(

@@ -51,12 +51,5 @@ flutter:
   uses-material-design: true
 
   assets:
-    - assets/descarga-removebg-preview.png
-    - assets/facebook-emblem.jpg
-    - assets/google.png
-    - assets/buscar.png
-    - assets/packsillas.jpg
-    - assets/sillasoficina.png
-    - assets/Silla-Gamer-Roja.png
-    - assets/sillaseventos.jpg
+    - assets/
     

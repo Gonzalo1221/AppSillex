@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'articulos.dart';
+
 
 class Menuprincipal extends StatefulWidget {
   const Menuprincipal({Key? key}) : super(key: key);
@@ -14,144 +16,10 @@ class _MenuprincipalState extends State<Menuprincipal> {
     Icons.account_circle_outlined
   ];
   List widgets = <Widget>[
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          Row(
-            children: [
-              const Padding(
-                padding: EdgeInsets.only(
-                  left: 2.0,
-                  top: 10.0,
-                ),
-                child: Text(
-                  'Sillex',
-                  style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
-                ),
-              ),
-              SizedBox(width: 225.0), // Espacio entre el texto y la imagen
-              SizedBox(
-                height: 30.0,
-                width: 30.0,
-                child: Image.asset(
-                  'assets/buscar.png',
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 33),
-          const Text(
-            "Articulo:",
-            style: TextStyle(fontSize: 26),
-          ),
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(left: 30.0, top: 10.0),
-                height: 250,
-                width: 150,
-                color: Colors.amber,
-                  child: Column(
-                  // Usamos Column como contenedor de múltiples hijos
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/packsillas.jpg'),
-                    const Text('Sillas de Comedor'),
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 50.0, top: 10.0),
-                height: 250,
-                width: 150,
-                color: Colors.amber,
-                  child: Column(
-                  // Usamos Column como contenedor de múltiples hijos
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/sillasoficina.png'),
-                    const Text('Sillas de Oficina'),
-                  ],
-                ),
-              ),
-            ],
-          ),
-          const SizedBox(height: 20),
-          Row(
-            children: [
-              Container(
-                margin: const EdgeInsets.only(left: 30.0, top: 10.0),
-                height: 250,
-                width: 150,
-                color: Colors.amber,
-                  child: Column(
-                  // Usamos Column como contenedor de múltiples hijos
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/sillaseventos.jpg'),
-                    const Text('Sillas de Evento'),
-                  ],
-                ),
-              ),
-              Container(
-                margin: const EdgeInsets.only(left: 50.0, top: 10.0),
-                height: 250,
-                width: 150,
-                color: Colors.amber,
-                child: Column(
-                  // Usamos Column como contenedor de múltiples hijos
-                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                  crossAxisAlignment: CrossAxisAlignment.center,
-                  children: [
-                    Image.asset('assets/Silla-Gamer-Roja.png'),
-                    const Text('Sillas Gamers'),
-                  ],
-                ),
-              )
-            ],
-          ),
-        ],
-      ),
+    const Center(
+      child: articulos(),
     ),
-    Center(
-      child: Column(
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          const SizedBox(height: 33),
-          const Text(
-            "Articulo:",
-            style: TextStyle(fontSize: 26),
-          ),
-          const SizedBox(height: 20),
-          Container(
-            margin: const EdgeInsets.only(left: 50.0, top: 10.0),
-            height: 250,
-            width: 150,
-            color: Colors.amber,
-            child: Column(
-              // Usamos Column como contenedor de múltiples hijos
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Image.asset('assets/Silla-Gamer-Roja.png'),
-                Text('Descripción del producto'),
-                ElevatedButton(
-                  onPressed: () {
-                    // Acción al hacer clic en el botón
-                  },
-                  child: Text('Comprar'),
-                ),
-              ],
-            ),
-          ),
-        ],
-      ),
-    ),
+    Center(),
     const Center(
         child: Text("Profile View",
             style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
