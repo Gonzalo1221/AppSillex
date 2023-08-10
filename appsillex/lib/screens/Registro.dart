@@ -9,10 +9,8 @@ class Registro extends StatelessWidget {
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _correoController = TextEditingController();
   final TextEditingController _contrasenaController = TextEditingController();
-  final TextEditingController _confirmarContrasenaController =
-      TextEditingController();
-  final TextEditingController _numeroIdentificacionController =
-      TextEditingController();
+  final TextEditingController _confirmarContrasenaController =TextEditingController();
+  final TextEditingController _numeroIdentificacionController =TextEditingController();
   final TextEditingController _celularController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 

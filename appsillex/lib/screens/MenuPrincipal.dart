@@ -1,6 +1,7 @@
+import 'package:appsillex/screens/editarperfil.dart';
 import 'package:flutter/material.dart';
 import 'articulos.dart';
-
+import 'perfil.dart';
 
 class Menuprincipal extends StatefulWidget {
   const Menuprincipal({Key? key}) : super(key: key);
@@ -19,10 +20,8 @@ class _MenuprincipalState extends State<Menuprincipal> {
     const Center(
       child: articulos(),
     ),
-    Center(),
-    const Center(
-        child: Text("Profile View",
-            style: TextStyle(fontSize: 24, fontWeight: FontWeight.bold))),
+    const Center(),
+    const Center(child: Text("hola"),),
   ];
 
   List<String> bottomNavigationName = ['Home', 'Buy', 'Profile'];
@@ -32,6 +31,7 @@ class _MenuprincipalState extends State<Menuprincipal> {
   List<Color> colorShade = [Colors.yellow, Colors.yellow, Colors.yellow];
 
   int selectedIndex = 0;
+  int previousIndex = 0; // Agregamos una variable para almacenar el índice anterior
 
   @override
   Widget build(BuildContext context) {
@@ -77,8 +77,26 @@ class _MenuprincipalState extends State<Menuprincipal> {
                               : const Color.fromARGB(255, 0, 0, 0),
                         ),
                         onTap: () {
-                          selectedIndex = i;
-                          setState(() {});
+                          if (i != selectedIndex) {
+                            setState(() {
+                              previousIndex = selectedIndex; // Almacenamos el índice anterior
+                              selectedIndex = i;
+                            });
+
+                            if (i == 2) {
+                              // Navegar a la vista de perfil
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) => editarprofile()),
+                              ).then((value) {
+                                // Callback para manejar el regreso desde la vista de perfil
+                                if (value == "back") {
+                                    selectedIndex = previousIndex; // Restaurar el índice anterior
+                                }
+                              });
+                            }
+                          }
                         }),
                     const SizedBox(width: 15),
                     (i == selectedIndex)
