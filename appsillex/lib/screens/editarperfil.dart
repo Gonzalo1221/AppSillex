@@ -1,149 +1,192 @@
 import 'package:flutter/material.dart';
+import 'cambiarcontraseña.dart';
 
-// ignore: camel_case_types, must_be_immutable
-class editarprofile extends StatelessWidget {
-  editarprofile({super.key});
+class EditarProfile extends StatefulWidget {
+  @override
+  _EditarProfileState createState() => _EditarProfileState();
+}
 
+class _EditarProfileState extends State<EditarProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _numeroIdentificacionController =
       TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
-  List listgenero = ['Hombre', 'Mujer', 'Otro'];
-  List listciudad = ['barranquilla', 'Soledad', 'bogota'];
-  List listtipoidentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
+  List<String> listGenero = ['Hombre', 'Mujer', 'Otro'];
+  List<String> listCiudad = ['Barranquilla', 'Soledad', 'Bogotá'];
+  List<String> listTipoIdentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _formKey,
-        appBar: AppBar(
-            shape: RoundedRectangleBorder(
-              borderRadius:
-                  BorderRadius.circular(50), // Define el radio de las esquinas
-            ),
-            title: const Text('Editar Perfil', style: TextStyle(fontSize: 32))),
-        body: Container(
+      appBar: AppBar(
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(50),
+        ),
+        title: Text('Editar Perfil', style: TextStyle(fontSize: 32)),
+      ),
+      body: Container(
+        width: 380,
+        margin: EdgeInsets.only(left: 18),
+        child: Form(
           key: _formKey,
-            width: 380,
-            margin: EdgeInsets.only(left: 18),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.stretch,
-              children: [
-                const Text(
-                  'Nombre',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                TextFormField(
-                  controller: _nombreController,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese su nombre',
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              Row(
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(right: 0, bottom: 140),
+                    child: SizedBox(
+                      height: 75.0,
+                      width: 75.0,
+                      child: Image.asset(
+                        'assets/letra-g.png',
+                      ),
+                    ),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese su nombre';
-                    }
-                    return null;
-                  },
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Genero',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                DropdownButtonFormField(
-                  decoration:
-                      const InputDecoration(hintText: 'Seleccione una opcion'),
-                  items: listgenero.map((genero) {
-                    return DropdownMenuItem(
-                      value: genero,
-                      child: Text(genero),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    print(value);
-                  },
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Fecha de nacimiento',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                const SizedBox(height: 10),
-                TextField(
-                  controller: _dateController,
-                  readOnly: true,
-                  onTap: () => _datePickerDialog(context),
-                  decoration: const InputDecoration(
-                    hintText: 'Selecciona una fecha',
-                    labelText: 'Fecha de nacimiento',
-                    border: OutlineInputBorder(),
+                  Container(
+                    margin: EdgeInsets.only(left: 5, bottom: 160),
+                    child: Text(
+                      "Hola, Gonzalo\n¿Qué tal tu día?",
+                      style: TextStyle(fontSize: 18),
+                    ),
                   ),
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Tipo de identificacion',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                DropdownButtonFormField(
-                  decoration:
-                      const InputDecoration(hintText: 'Seleccione una opcion'),
-                  items: listtipoidentificacion.map((tipoidentificacion) {
-                    return DropdownMenuItem(
-                      value: tipoidentificacion,
-                      child: Text(tipoidentificacion),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    print(value);
-                  },
-                ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Numero de identificacion',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
-                ),
-                TextFormField(
-                  controller: _numeroIdentificacionController,
-                  decoration: const InputDecoration(
-                    hintText: 'Ingrese su identificacion',
+                  Container(
+                    margin: EdgeInsets.only(right: 10, bottom: 30),
+                    child: TextButton(
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => cambiarcontrasena()),
+                          );
+                        },
+                        child: const Text(
+                          "cambiar contraseña",
+                          style: TextStyle(
+                              fontSize: 16,
+                              decoration: TextDecoration.underline,
+                              color: Colors.black),
+                        )),
                   ),
-                  validator: (value) {
-                    if (value == null || value.isEmpty) {
-                      return 'Por favor, ingrese su identificacion';
-                    }
-                    return null;
-                  },
+                ],
+              ),
+              Text(
+                'Nombre',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextFormField(
+                controller: _nombreController,
+                decoration: InputDecoration(
+                  hintText: 'Ingrese su nombre',
                 ),
-                const SizedBox(height: 10),
-                const Text(
-                  'Ciudad',
-                  style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, ingrese su nombre';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Genero',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              DropdownButtonFormField(
+                decoration: InputDecoration(hintText: 'Seleccione una opción'),
+                items: listGenero.map((genero) {
+                  return DropdownMenuItem(
+                    value: genero,
+                    child: Text(genero),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  print(value);
+                },
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Fecha de nacimiento',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              SizedBox(height: 10),
+              TextField(
+                controller: _dateController,
+                readOnly: true,
+                onTap: () => _datePickerDialog(context),
+                decoration: InputDecoration(
+                  hintText: 'Selecciona una fecha',
+                  labelText: 'Fecha de nacimiento',
+                  border: OutlineInputBorder(),
                 ),
-                DropdownButtonFormField(
-                  decoration:
-                      const InputDecoration(hintText: 'Seleccione una opcion'),
-                  items: listciudad.map((ciudad) {
-                    return DropdownMenuItem(
-                      value: ciudad,
-                      child: Text(ciudad),
-                    );
-                  }).toList(),
-                  onChanged: (value) {
-                    print(value);
-                  },
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Tipo de identificación',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              DropdownButtonFormField(
+                decoration: InputDecoration(hintText: 'Seleccione una opción'),
+                items: listTipoIdentificacion.map((tipoIdentificacion) {
+                  return DropdownMenuItem(
+                    value: tipoIdentificacion,
+                    child: Text(tipoIdentificacion),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  print(value);
+                },
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Número de identificación',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              TextFormField(
+                controller: _numeroIdentificacionController,
+                decoration: InputDecoration(
+                  hintText: 'Ingrese su identificación',
                 ),
-                ElevatedButton(
-                  onPressed: () {
-                    if (_formKey.currentState!.validate()) {
-                    }
-                  },
-                  child: const Text('Finalizar'),
-                ),
-              ],
-            )));
+                validator: (value) {
+                  if (value == null || value.isEmpty) {
+                    return 'Por favor, ingrese su identificación';
+                  }
+                  return null;
+                },
+              ),
+              SizedBox(height: 10),
+              Text(
+                'Ciudad',
+                style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
+              ),
+              DropdownButtonFormField(
+                decoration: InputDecoration(hintText: 'Seleccione una opción'),
+                items: listCiudad.map((ciudad) {
+                  return DropdownMenuItem(
+                    value: ciudad,
+                    child: Text(ciudad),
+                  );
+                }).toList(),
+                onChanged: (value) {
+                  print(value);
+                },
+              ),
+              ElevatedButton(
+                onPressed: () {
+                  if (_formKey.currentState!.validate()) {
+                    // Realiza acciones después de validar el formulario
+                  }
+                },
+                child: Text('Finalizar'),
+              ),
+            ],
+          ),
+        ),
+      ),
+    );
   }
 
   void _datePickerDialog(BuildContext context) {

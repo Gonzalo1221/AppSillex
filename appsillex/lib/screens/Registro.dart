@@ -3,51 +3,45 @@ import 'package:flutter/cupertino.dart';
 import 'package:appsillex/main.dart';
 
 class Registro extends StatelessWidget {
-  final ScrollController controller = ScrollController();
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _correoController = TextEditingController();
   final TextEditingController _contrasenaController = TextEditingController();
-  final TextEditingController _confirmarContrasenaController =TextEditingController();
-  final TextEditingController _numeroIdentificacionController =TextEditingController();
+  final TextEditingController _confirmarContrasenaController = TextEditingController();
+  final TextEditingController _numeroIdentificacionController = TextEditingController();
   final TextEditingController _celularController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
-  Registro({super.key});
-
-  List listgenero = ['Hombre', 'Mujer', 'Otro'];
-  List listciudad = ['barranquilla', 'Soledad', 'bogota'];
-  List listtipoidentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
+  List<String> listGenero = ['Hombre', 'Mujer', 'Otro'];
+  List<String> listCiudad = ['Barranquilla', 'Soledad', 'Bogotá'];
+  List<String> listTipoIdentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      key: _formKey,
       appBar: AppBar(
         shape: RoundedRectangleBorder(
-          borderRadius:
-              BorderRadius.circular(60), // Define el radio de las esquinas
+          borderRadius: BorderRadius.circular(60),
         ),
-        title: const Text('Registro'),
+        title: Text('Registro'),
         actions: [
           ElevatedButton(
             onPressed: () {
               Navigator.push(
                 context,
                 MaterialPageRoute(builder: (context) => const LoginPage()),
-              ); // Acción al hacer clic en el botón
+              );
             },
             style: ElevatedButton.styleFrom(
               fixedSize: const Size(100, 50),
               backgroundColor: Colors.white,
               shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(
-                    30), // Define el radio de las esquinas
+                borderRadius: BorderRadius.circular(30),
               ),
             ),
             child: const Text(
-              'omitir',
+              'Omitir',
               style: TextStyle(color: Colors.black),
             ),
           ),
@@ -78,6 +72,7 @@ class Registro extends StatelessWidget {
                     return null;
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Correo',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -94,6 +89,7 @@ class Registro extends StatelessWidget {
                     return null;
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Contraseña',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -110,6 +106,7 @@ class Registro extends StatelessWidget {
                     return null;
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Confirmar Contraseña',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -129,6 +126,7 @@ class Registro extends StatelessWidget {
                     return null;
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Genero',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -136,7 +134,7 @@ class Registro extends StatelessWidget {
                 DropdownButtonFormField(
                   decoration:
                       const InputDecoration(hintText: 'Seleccione una opcion'),
-                  items: listgenero.map((genero) {
+                  items: listGenero.map((genero) {
                     return DropdownMenuItem(
                       value: genero,
                       child: Text(genero),
@@ -146,6 +144,7 @@ class Registro extends StatelessWidget {
                     print(value);
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Ciudad',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -153,7 +152,7 @@ class Registro extends StatelessWidget {
                 DropdownButtonFormField(
                   decoration:
                       const InputDecoration(hintText: 'Seleccione una opcion'),
-                  items: listciudad.map((ciudad) {
+                  items: listCiudad.map((ciudad) {
                     return DropdownMenuItem(
                       value: ciudad,
                       child: Text(ciudad),
@@ -163,6 +162,7 @@ class Registro extends StatelessWidget {
                     print(value);
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Fecha de nacimiento',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -186,7 +186,7 @@ class Registro extends StatelessWidget {
                 DropdownButtonFormField(
                   decoration:
                       const InputDecoration(hintText: 'Seleccione una opcion'),
-                  items: listtipoidentificacion.map((tipoidentificacion) {
+                  items: listTipoIdentificacion.map((tipoidentificacion) {
                     return DropdownMenuItem(
                       value: tipoidentificacion,
                       child: Text(tipoidentificacion),
@@ -196,6 +196,7 @@ class Registro extends StatelessWidget {
                     print(value);
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Numero de identificacion',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -212,6 +213,7 @@ class Registro extends StatelessWidget {
                     return null;
                   },
                 ),
+                const SizedBox(height: 10),
                 const Text(
                   'Celular',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),

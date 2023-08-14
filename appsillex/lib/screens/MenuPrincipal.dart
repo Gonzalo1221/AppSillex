@@ -1,7 +1,7 @@
-import 'package:appsillex/screens/editarperfil.dart';
 import 'package:flutter/material.dart';
 import 'articulos.dart';
 import 'perfil.dart';
+import 'detalleproductos.dart';
 
 class Menuprincipal extends StatefulWidget {
   const Menuprincipal({Key? key}) : super(key: key);
@@ -11,17 +11,16 @@ class Menuprincipal extends StatefulWidget {
 }
 
 class _MenuprincipalState extends State<Menuprincipal> {
+  GlobalKey<NavigatorState> menunavigatorKey = GlobalKey<NavigatorState>();
   List<IconData> navbarIcons = [
-    Icons.home,
+    Icons.home_outlined,
     Icons.shopping_cart_outlined,
-    Icons.account_circle_outlined
+    Icons.account_circle_outlined,
   ];
-  List widgets = <Widget>[
-    const Center(
-      child: articulos(),
-    ),
-    const Center(),
-    const Center(child: Text("hola"),),
+  List<Widget> widgets = [
+    const articulos(),
+    const DetalleProducto(),
+    const profile(),
   ];
 
   List<String> bottomNavigationName = ['Home', 'Buy', 'Profile'];
@@ -31,94 +30,103 @@ class _MenuprincipalState extends State<Menuprincipal> {
   List<Color> colorShade = [Colors.yellow, Colors.yellow, Colors.yellow];
 
   int selectedIndex = 0;
-  int previousIndex = 0; // Agregamos una variable para almacenar el índice anterior
+  int previousIndex = 0;
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: widgets[selectedIndex],
-      bottomNavigationBar: Container(
-        padding: EdgeInsets.only(bottom: 16, left: 12, right: 12, top: 8),
-        height: 70,
-        decoration: BoxDecoration(
-          color: appStore.cardColor,
-          boxShadow: [
-            BoxShadow(
-              color: Colors.black.withOpacity(0.2),
-              spreadRadius: 50,
-              blurRadius: 50,
-              offset: Offset(0, 3), // Cambia los valores para ajustar la sombra
-            ),
-          ],
+    return WillPopScope(
+      onWillPop: () async {
+        if (selectedIndex != 0) {
+          setState(() {
+            selectedIndex = 0;
+          });
+          return false;
+        }
+        return true;
+      },
+      child: Scaffold(
+        body: Navigator(
+          key: menunavigatorKey,
+          onGenerateRoute: (RouteSettings settings) {
+            return MaterialPageRoute(
+              settings: settings,
+              builder: (BuildContext context) {
+                return widgets[selectedIndex];
+              },
+            );
+          },
         ),
-        child: Row(
-          mainAxisAlignment: MainAxisAlignment.spaceBetween,
-          children: navbarIcons.map(
-            (e) {
-              int i = navbarIcons.indexOf(e);
-              return AnimatedContainer(
-                duration: Duration(milliseconds: 500),
-                padding: EdgeInsets.all(8),
-                height: 45,
-                decoration: BoxDecoration(
-                  color:
-                      i == selectedIndex ? colorShade[i] : appStore.cardColor,
-                  borderRadius: BorderRadius.all(Radius.circular(50.0)),
-                ),
-                child: Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    GestureDetector(
-                        child: Icon(
-                          e,
-                          size: 40,
-                          color: i == selectedIndex
-                              ? color[i]
-                              : const Color.fromARGB(255, 0, 0, 0),
-                        ),
-                        onTap: () {
-                          if (i != selectedIndex) {
-                            setState(() {
-                              previousIndex = selectedIndex; // Almacenamos el índice anterior
-                              selectedIndex = i;
-                            });
-
-                            if (i == 2) {
-                              // Navegar a la vista de perfil
-                              Navigator.push(
+        bottomNavigationBar: Container(
+          margin: const EdgeInsets.only(left: 85, right: 85, bottom: 26),
+          padding: const EdgeInsets.only(left: 15, right: 15),
+          height: 70,
+          decoration: BoxDecoration(
+            color: AppStore().cardColor,
+            borderRadius: BorderRadius.vertical(
+              top: Radius.circular(50),
+              bottom: Radius.circular(50),
+            ),
+            boxShadow: [
+              BoxShadow(
+                color: Colors.black.withOpacity(0.1),
+                spreadRadius: 10,
+                blurRadius: 30,
+                offset: Offset(0, 1),
+              ),
+            ],
+          ),
+          child: Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: navbarIcons.map(
+              (e) {
+                int i = navbarIcons.indexOf(e);
+                return GestureDetector(
+                  onTap: () {
+                    if (i != selectedIndex) {
+                      setState(() {
+                        previousIndex = selectedIndex;
+                        selectedIndex = i;
+                      });
+                      if (i == 2) {
+                        Navigator.push(
                                 context,
                                 MaterialPageRoute(
-                                    builder: (context) => editarprofile()),
-                              ).then((value) {
-                                // Callback para manejar el regreso desde la vista de perfil
-                                if (value == "back") {
-                                    selectedIndex = previousIndex; // Restaurar el índice anterior
-                                }
-                              });
-                            }
+                                    builder: (context) => const profile()))
+                            .then((value) {
+                          if (value == "back") {
+                            selectedIndex = previousIndex;
                           }
-                        }),
-                    const SizedBox(width: 15),
-                    (i == selectedIndex)
-                        ? Container(
-                            padding: EdgeInsets.symmetric(horizontal: 4.0),
-                            child: Text(bottomNavigationName[i],
-                                style: TextStyle(
-                                    color: color[i],
-                                    fontWeight: FontWeight.bold)))
-                        : Container(),
-                  ],
-                ),
-              );
-            },
-          ).toList(),
+                        });
+                      }
+                    }
+                  },
+                  child: AnimatedContainer(
+                    duration: Duration(milliseconds: 500),
+                    padding: EdgeInsets.all(5),
+                    height: 45,
+                    decoration: BoxDecoration(
+                      color: i == selectedIndex
+                          ? colorShade[i]
+                          : AppStore().cardColor,
+                      borderRadius: BorderRadius.all(Radius.circular(50.0)),
+                    ),
+                    child: Icon(
+                      e,
+                      size: 40,
+                      color: i == selectedIndex
+                          ? color[i]
+                          : const Color.fromARGB(255, 0, 0, 0),
+                    ),
+                  ),
+                );
+              },
+            ).toList(),
+          ),
         ),
       ),
     );
   }
 }
-
-AppStore appStore = AppStore();
 
 class AppStore {
   Color? textPrimaryColor;
