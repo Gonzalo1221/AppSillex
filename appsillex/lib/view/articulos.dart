@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'detalleproductos.dart';
+import 'carrito.dart';
 
 class articulos extends StatelessWidget {
   const articulos({super.key});
@@ -46,7 +47,9 @@ class articulos extends StatelessWidget {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => DetalleProducto()),
+                          builder: (context) => const DemoMWAppBarScreen(
+                                initialCategory: 'Comedor',
+                              )),
                     );
                   },
                   child: Container(

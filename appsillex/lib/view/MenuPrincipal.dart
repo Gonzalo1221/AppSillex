@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'articulos.dart';
 import 'perfil.dart';
 import 'detalleproductos.dart';
+import 'carrito.dart';
 
 class Menuprincipal extends StatefulWidget {
   const Menuprincipal({Key? key}) : super(key: key);
@@ -48,12 +49,15 @@ class _MenuprincipalState extends State<Menuprincipal> {
         body: Navigator(
           key: menunavigatorKey,
           onGenerateRoute: (RouteSettings settings) {
-            return MaterialPageRoute(
-              settings: settings,
-              builder: (BuildContext context) {
-                return widgets[selectedIndex];
-              },
-            );
+            if (settings.name == '/articulos') {
+              return MaterialPageRoute(builder: (context) => const articulos());
+            } else if (settings.name == '/detalleproducto') {
+              return MaterialPageRoute(
+                  builder: (context) => const DetalleProducto());
+            } else if (settings.name == '/profile') {
+              return MaterialPageRoute(builder: (context) => const profile());
+            }
+            return MaterialPageRoute(builder: (context) => widgets[0]);
           },
         ),
         bottomNavigationBar: Container(

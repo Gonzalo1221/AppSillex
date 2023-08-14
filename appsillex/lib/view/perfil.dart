@@ -1,6 +1,6 @@
 import 'dart:ffi';
 
-import 'package:appsillex/screens/editarperfil.dart';
+import 'package:appsillex/view/editarperfil.dart';
 import 'package:flutter/material.dart';
 
 class profile extends StatelessWidget {

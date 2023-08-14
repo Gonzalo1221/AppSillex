@@ -2,9 +2,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'screens/MenuPrincipal.dart';
-import 'screens/Registro.dart';
-import 'screens/IniciarSesion.dart';
+import 'view/MenuPrincipal.dart';
+import 'view/Registro.dart';
+import 'view/IniciarSesion.dart';
 
 void main() {
   runApp(const MyApp());
@@ -28,133 +28,135 @@ class LoginPage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        height: double.infinity,
         color: const Color(0xFFEDE7DD), // Set the background color to red
         padding: const EdgeInsets.all(16.0),
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          crossAxisAlignment: CrossAxisAlignment.stretch,
-          children: [
-            // Agrega la imagen como fondo utilizando Image.asset
-            SizedBox(
-              height: 300,
-              width: 300,
-              child: Image.asset(
-                'assets/descarga-removebg-preview.png',
-                fit: BoxFit.cover,
-              ),
-            ),
-
-            const Padding(
-              padding: EdgeInsets.only(left: 20.0, top: 20.0),
-              child: Text(
-                'Sillex',
-                textAlign: TextAlign
-                    .center, // Aquí puedes cambiar el texto como desees
-                style: TextStyle(
-                  fontSize: 50.0,
-                  fontWeight: FontWeight.bold,
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.stretch,
+            children: [
+              // Agrega la imagen como fondo utilizando Image.asset
+              SizedBox(
+                height: 300,
+                width: 300,
+                child: Image.asset(
+                  'assets/descarga-removebg-preview.png',
+                  fit: BoxFit.cover,
                 ),
               ),
-            ),
 
-            const Padding(
-              padding: EdgeInsets.only(left: 20.0, top: 20.0),
-              child: Text(
-                'Sillas elegantes',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 24.0,
-                ),
-              ),
-            ),
-            const Padding(
-              padding: EdgeInsets.only(left: 20.0, top: 20.0),
-              child: Text(
-                '¡Bienvenido!',
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 34.0,
-                  fontWeight: FontWeight.bold,
-                ),
-              ),
-            ),
-            const SizedBox(height: 6.0),
-
-            Padding(
-              padding: const EdgeInsets.only(
-                  left: 10.0,
-                  top: 70.0), // Ajustar los valores para mover el botón
-              child: ElevatedButton(
-                style: ElevatedButton.styleFrom(
-                  backgroundColor: Colors.blue[200],
-                  shape: RoundedRectangleBorder(
-                    borderRadius: BorderRadius.circular(
-                        40), // Define el radio de las esquinas
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                child: Text(
+                  'Sillex',
+                  textAlign: TextAlign
+                      .center, // Aquí puedes cambiar el texto como desees
+                  style: TextStyle(
+                    fontSize: 50.0,
+                    fontWeight: FontWeight.bold,
                   ),
-                  minimumSize:
-                      const Size(250, 60), // Ajusta el tamaño mínimo del botón
-                ),
-                onPressed: () {
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                        builder: (context) =>
-                            const Menuprincipal()),
-                  );
-                },
-                child: const Text(
-                  'Explorar',
-                  style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                 ),
               ),
-            ),
-            const SizedBox(height: 16.0),
-            Row(
-              mainAxisAlignment:
-                  MainAxisAlignment.center, // Alineación central horizontal
-              children: [
-                TextButton(
-                  onPressed: () {
-                    // Navegar a la segunda página cuando se presione "Registro"
-                    Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                          builder: (context) => Registro()),
-                    );
-                  },
-                  child: const Text(
-                    'Registro',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.0,
+
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                child: Text(
+                  'Sillas elegantes',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 24.0,
+                  ),
+                ),
+              ),
+              const Padding(
+                padding: EdgeInsets.only(left: 20.0, top: 20.0),
+                child: Text(
+                  '¡Bienvenido!',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 34.0,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+              const SizedBox(height: 6.0),
+
+              Padding(
+                padding: const EdgeInsets.only(
+                    left: 10.0,
+                    top: 70.0), // Ajustar los valores para mover el botón
+                child: ElevatedButton(
+                  style: ElevatedButton.styleFrom(
+                    backgroundColor: Colors.blue[200],
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(
+                          40), // Define el radio de las esquinas
                     ),
+                    minimumSize: const Size(
+                        250, 60), // Ajusta el tamaño mínimo del botón
                   ),
-                ),
-                const SizedBox(
-                    width: 10), // Un pequeño espacio entre los botones
-                TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
                       MaterialPageRoute(
-                          builder: (context) => IniciarSesion()),
+                          builder: (context) => const Menuprincipal()),
                     );
                   },
                   child: const Text(
-                    'Iniciar Sesión',
-                    style: TextStyle(
-                      color: Colors.black,
-                      fontWeight: FontWeight.bold,
-                      fontSize: 24.0,
-                    ),
+                    'Explorar',
+                    style: TextStyle(fontSize: 50, fontWeight: FontWeight.bold),
                   ),
                 ),
-              ],
-            ),
-            const SizedBox(height: 30), // Un pequeño espacio entre los botones
-            const TermsAndConditionsWidget(),
-          ],
+              ),
+              const SizedBox(height: 16.0),
+              Row(
+                mainAxisAlignment:
+                    MainAxisAlignment.center, // Alineación central horizontal
+                children: [
+                  TextButton(
+                    onPressed: () {
+                      // Navegar a la segunda página cuando se presione "Registro"
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Registro()),
+                      );
+                    },
+                    child: const Text(
+                      'Registro',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
+                  const SizedBox(
+                      width: 10), // Un pequeño espacio entre los botones
+                  TextButton(
+                    onPressed: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => IniciarSesion()),
+                      );
+                    },
+                    child: const Text(
+                      'Iniciar Sesión',
+                      style: TextStyle(
+                        color: Colors.black,
+                        fontWeight: FontWeight.bold,
+                        fontSize: 24.0,
+                      ),
+                    ),
+                  ),
+                ],
+              ),
+              const SizedBox(
+                  height: 30), // Un pequeño espacio entre los botones
+              const TermsAndConditionsWidget(),
+            ],
+          ),
         ),
       ),
     );
