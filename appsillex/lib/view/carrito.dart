@@ -23,34 +23,32 @@ class DemoMWAppBarScreenState extends State<DemoMWAppBarScreen> {
 
   // Ficticia lista de productos con título, descripción e imagen
   List<Map<String, dynamic>> productList = [
-    // Productos con categoría "Sillas"
     {
       'category': 'Comedor',
-      'title': 'Silla gamer roja',
+      'title': 'Silla de comedor',
       'description':
           'Esta silla es para ti por piensa en ti con su color personalizado',
-      'image': 'assets/Silla-Gamer-Roja.png',
+      'image': 'assets/packsillas.png',
       'precio': 'precio: 15.00',
     },
     {
       'category': 'Oficina',
-      'title': 'Silla gamer verde',
+      'title': 'Silla de oficina',
       'description':
           'Esta silla es para ti por piensa en ti con su color personalizado',
-      'image': 'assets/Silla-Gamer-Roja.png',
+      'image': 'assets/sillasoficina.png',
       'precio': 'precio: 15.00',
     },
-    // Productos con categoría "Mesas"
     {
       'category': 'Evento',
-      'title': 'Silla de escritorio',
+      'title': 'Silla de evento',
       'description': 'Escritorio espacioso para trabajar cómodamente',
-      'image': 'assets/Silla-Gamer-Roja.png',
+      'image': 'assets/sillaseventos.png',
       'precio': 'precio: 50.00',
     },
     {
       'category': 'Gamers',
-      'title': 'Silla de comedor',
+      'title': 'Silla de gamer',
       'description': 'Mesa grande para disfrutar de comidas en familia',
       'image': 'assets/Silla-Gamer-Roja.png',
       'precio': 'precio: 80.00',
