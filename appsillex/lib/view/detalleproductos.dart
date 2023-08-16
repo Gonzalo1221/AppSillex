@@ -7,6 +7,7 @@ class DetalleProducto extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
+        padding: const EdgeInsets.all(0.0),
         child: Column(
           // mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -23,7 +24,7 @@ class DetalleProducto extends StatelessWidget {
               children: [
                 Container(
                     margin: const EdgeInsets.only(left: 150, top: 5),
-                    child: Text(
+                    child: const Text(
                       "Sillas Gamers",
                       style:
                           TextStyle(fontSize: 24, fontWeight: FontWeight.bold),
@@ -47,7 +48,7 @@ class DetalleProducto extends StatelessWidget {
                         onPressed: () {
                           // Acción al hacer clic en el botón
                         },
-                        child: Text('Comprar'),
+                        child: const Text('Comprar'),
                       ),
                     ],
                   ),

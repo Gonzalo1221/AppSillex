@@ -1,4 +1,4 @@
-import 'MenuPrincipal.dart';
+import 'menu_principal.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -69,7 +69,7 @@ class IniciarSesion extends StatelessWidget {
                     );
                   },
                   style: ElevatedButton.styleFrom(
-                      backgroundColor: Color.fromARGB(255, 21, 130, 219)),
+                      backgroundColor: const Color.fromARGB(255, 21, 130, 219)),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
@@ -89,7 +89,7 @@ class IniciarSesion extends StatelessWidget {
                     ],
                   ),
                 ),
-                SizedBox(height: 190),
+                const SizedBox(height: 190),
                 const Text(
                   "Correo",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -107,7 +107,7 @@ class IniciarSesion extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 const Text(
                   'Contraseña',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
@@ -125,14 +125,14 @@ class IniciarSesion extends StatelessWidget {
                     return null;
                   },
                 ),
-                SizedBox(height: 80),
+                const SizedBox(height: 80),
                 ElevatedButton(
                     style: ElevatedButton.styleFrom(
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(
                               40), // Define el radio de las esquinas
                         ),
-                        minimumSize: Size(10, 40)),
+                        minimumSize: const Size(10, 40)),
                     onPressed: () {
                       Navigator.push(
                         context,
@@ -146,7 +146,7 @@ class IniciarSesion extends StatelessWidget {
                         fontSize: 20,
                       ),
                     )),
-                SizedBox(height: 100),
+                const SizedBox(height: 100),
                 const TermsAndConditionsWidget(),
                 TextButton(
                     onPressed: () {},

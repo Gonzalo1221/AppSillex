@@ -1,8 +1,8 @@
 import 'package:appsillex/view/editarperfil.dart';
 import 'package:flutter/material.dart';
 
-class profile extends StatelessWidget {
-  const profile({super.key});
+class Profile extends StatelessWidget {
+  const Profile({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -14,10 +14,11 @@ class profile extends StatelessWidget {
           ),
           title: const Text('Hola, Gonzalo', textAlign: TextAlign.center)),
       body: Container(
+        padding: const EdgeInsets.all(0.0),
         child: Column(
           children: [
             Container(
-              margin: EdgeInsets.only(left: 50, top: 70),
+              margin: const EdgeInsets.only(left: 50, top: 70),
               child: SizedBox(
                 height: 170.0,
                 width: 170.0,
@@ -27,12 +28,13 @@ class profile extends StatelessWidget {
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 50, top: 0),
+              margin: const EdgeInsets.only(left: 50, top: 0),
               child: TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditarProfile()),
+                      MaterialPageRoute(
+                          builder: (context) => const EditarProfile()),
                     );
                   },
                   child: const Text(
@@ -43,40 +45,40 @@ class profile extends StatelessWidget {
                         color: Colors.black),
                   )),
             ),
-            SizedBox(height: 140),
+            const SizedBox(height: 140),
             Container(
-              margin: EdgeInsets.only(left: 50),
+              margin: const EdgeInsets.only(left: 50),
               child: const Text(
                 "Términas y condiciones",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 50),
+              margin: const EdgeInsets.only(left: 50),
               child: const Text(
                 "Preguntas frecuentes",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 50),
+              margin: const EdgeInsets.only(left: 50),
               child: const Text(
                 "Contáctanos",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
             Container(
-              margin: EdgeInsets.only(left: 50),
+              margin: const EdgeInsets.only(left: 50),
               child: const Text(
                 "Ofertas vigentes",
                 style: TextStyle(fontSize: 30, fontWeight: FontWeight.bold),
               ),
             ),
-            SizedBox(height: 40),
+            const SizedBox(height: 40),
             Container(
               height: 60,
               width: 370,
-              margin: EdgeInsets.only(left: 20),
+              margin: const EdgeInsets.only(left: 20),
               child: ElevatedButton(
                   style: ElevatedButton.styleFrom(
                       shape: RoundedRectangleBorder(
@@ -88,12 +90,13 @@ class profile extends StatelessWidget {
                   )),
             ),
             Container(
-              margin: EdgeInsets.only(left: 150, top: 0),
+              margin: const EdgeInsets.only(left: 150, top: 0),
               child: TextButton(
                   onPressed: () {
                     Navigator.push(
                       context,
-                      MaterialPageRoute(builder: (context) => EditarProfile()),
+                      MaterialPageRoute(
+                          builder: (context) => const EditarProfile()),
                     );
                   },
                   child: const Text(

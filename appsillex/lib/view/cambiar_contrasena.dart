@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 
 
-class cambiarcontrasena extends StatelessWidget {
-  const cambiarcontrasena({super.key});
+class Cambiarcontrasena extends StatelessWidget {
+  const Cambiarcontrasena({super.key});
 
 
   @override

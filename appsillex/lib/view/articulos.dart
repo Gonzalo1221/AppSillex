@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
-import 'detalleproductos.dart';
 import 'carrito.dart';
 
-class articulos extends StatelessWidget {
-  const articulos({super.key});
+class Articulos extends StatelessWidget {
+  const Articulos({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      // ignore: avoid_unnecessary_containers
       body: Container(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -24,7 +24,7 @@ class articulos extends StatelessWidget {
                     style: TextStyle(fontSize: 45, fontWeight: FontWeight.bold),
                   ),
                 ),
-                SizedBox(width: 225.0), // Espacio entre el texto y la imagen
+                const SizedBox(width: 225.0), // Espacio entre el texto y la imagen
                 SizedBox(
                   height: 30.0,
                   width: 30.0,

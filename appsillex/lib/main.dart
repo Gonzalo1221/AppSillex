@@ -2,9 +2,9 @@
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'view/MenuPrincipal.dart';
-import 'view/Registro.dart';
-import 'view/IniciarSesion.dart';
+import 'view/menu_principal.dart';
+import 'view/registro.dart';
+import 'view/iniciar_sesion.dart';
 
 void main() {
   runApp(const MyApp());

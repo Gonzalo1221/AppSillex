@@ -1,12 +1,14 @@
 import 'package:flutter/material.dart';
-import 'cambiarcontraseña.dart';
+import 'cambiar_contrasena.dart';
 
 class EditarProfile extends StatefulWidget {
+  const EditarProfile({super.key});
+
   @override
-  _EditarProfileState createState() => _EditarProfileState();
+  EditarProfileState createState() => EditarProfileState();
 }
 
-class _EditarProfileState extends State<EditarProfile> {
+class EditarProfileState extends State<EditarProfile> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _numeroIdentificacionController =
@@ -24,11 +26,11 @@ class _EditarProfileState extends State<EditarProfile> {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(50),
         ),
-        title: Text('Editar Perfil', style: TextStyle(fontSize: 32)),
+        title: const Text('Editar Perfil', style: TextStyle(fontSize: 32)),
       ),
       body: Container(
         width: 380,
-        margin: EdgeInsets.only(left: 18),
+        margin: const EdgeInsets.only(left: 18),
         child: SingleChildScrollView(
           child: Form(
             key: _formKey,
@@ -39,7 +41,8 @@ class _EditarProfileState extends State<EditarProfile> {
                 Row(
                   children: [
                     Container(
-                      margin: EdgeInsets.only(right: 0, bottom: 140),
+                      margin:
+                          const EdgeInsets.only(right: 0, bottom: 140, top: 10),
                       child: SizedBox(
                         height: 75.0,
                         width: 75.0,
@@ -49,20 +52,21 @@ class _EditarProfileState extends State<EditarProfile> {
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(left: 5, bottom: 160),
-                      child: Text(
+                      margin: const EdgeInsets.only(left: 5, bottom: 160),
+                      child: const Text(
                         "Hola, Gonzalo\n¿Qué tal tu día?",
                         style: TextStyle(fontSize: 18),
                       ),
                     ),
                     Container(
-                      margin: EdgeInsets.only(right: 10, bottom: 30),
+                      margin: const EdgeInsets.only(right: 10, bottom: 30),
                       child: TextButton(
                           onPressed: () {
                             Navigator.push(
                               context,
                               MaterialPageRoute(
-                                  builder: (context) => cambiarcontrasena()),
+                                  builder: (context) =>
+                                      const Cambiarcontrasena()),
                             );
                           },
                           child: const Text(
@@ -75,13 +79,13 @@ class _EditarProfileState extends State<EditarProfile> {
                     ),
                   ],
                 ),
-                Text(
+                const Text(
                   'Nombre',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
                   controller: _nombreController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Ingrese su nombre',
                   ),
                   validator: (value) {
@@ -91,14 +95,14 @@ class _EditarProfileState extends State<EditarProfile> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Genero',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 DropdownButtonFormField(
                   decoration:
-                      InputDecoration(hintText: 'Seleccione una opción'),
+                      const InputDecoration(hintText: 'Seleccione una opción'),
                   items: listGenero.map((genero) {
                     return DropdownMenuItem(
                       value: genero,
@@ -109,30 +113,30 @@ class _EditarProfileState extends State<EditarProfile> {
                     print(value);
                   },
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Fecha de nacimiento',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
-                SizedBox(height: 10),
+                const SizedBox(height: 10),
                 TextField(
                   controller: _dateController,
                   readOnly: true,
                   onTap: () => _datePickerDialog(context),
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Selecciona una fecha',
                     labelText: 'Fecha de nacimiento',
                     border: OutlineInputBorder(),
                   ),
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Tipo de identificación',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 DropdownButtonFormField(
                   decoration:
-                      InputDecoration(hintText: 'Seleccione una opción'),
+                      const InputDecoration(hintText: 'Seleccione una opción'),
                   items: listTipoIdentificacion.map((tipoIdentificacion) {
                     return DropdownMenuItem(
                       value: tipoIdentificacion,
@@ -143,14 +147,14 @@ class _EditarProfileState extends State<EditarProfile> {
                     print(value);
                   },
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Número de identificación',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 TextFormField(
                   controller: _numeroIdentificacionController,
-                  decoration: InputDecoration(
+                  decoration: const InputDecoration(
                     hintText: 'Ingrese su identificación',
                   ),
                   validator: (value) {
@@ -160,14 +164,14 @@ class _EditarProfileState extends State<EditarProfile> {
                     return null;
                   },
                 ),
-                SizedBox(height: 10),
-                Text(
+                const SizedBox(height: 10),
+                const Text(
                   'Ciudad',
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 ),
                 DropdownButtonFormField(
                   decoration:
-                      InputDecoration(hintText: 'Seleccione una opción'),
+                      const InputDecoration(hintText: 'Seleccione una opción'),
                   items: listCiudad.map((ciudad) {
                     return DropdownMenuItem(
                       value: ciudad,
@@ -184,7 +188,7 @@ class _EditarProfileState extends State<EditarProfile> {
                       // Realiza acciones después de validar el formulario
                     }
                   },
-                  child: Text('Finalizar'),
+                  child: const Text('Finalizar'),
                 ),
               ],
             ),

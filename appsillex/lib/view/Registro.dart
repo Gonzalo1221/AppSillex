@@ -8,14 +8,18 @@ class Registro extends StatelessWidget {
   final TextEditingController _nombreController = TextEditingController();
   final TextEditingController _correoController = TextEditingController();
   final TextEditingController _contrasenaController = TextEditingController();
-  final TextEditingController _confirmarContrasenaController = TextEditingController();
-  final TextEditingController _numeroIdentificacionController = TextEditingController();
+  final TextEditingController _confirmarContrasenaController =
+      TextEditingController();
+  final TextEditingController _numeroIdentificacionController =
+      TextEditingController();
   final TextEditingController _celularController = TextEditingController();
   final TextEditingController _dateController = TextEditingController();
 
-  List<String> listGenero = ['Hombre', 'Mujer', 'Otro'];
-  List<String> listCiudad = ['Barranquilla', 'Soledad', 'Bogotá'];
-  List<String> listTipoIdentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
+  final List<String> listGenero = ['Hombre', 'Mujer', 'Otro'];
+  final List<String> listCiudad = ['Barranquilla', 'Soledad', 'Bogotá'];
+  final List<String> listTipoIdentificacion = ['C.C', 'T.I', 'Cedula extranjera'];
+
+  Registro({super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -24,7 +28,7 @@ class Registro extends StatelessWidget {
         shape: RoundedRectangleBorder(
           borderRadius: BorderRadius.circular(60),
         ),
-        title: Text('Registro'),
+        title: const Text('Registro'),
         actions: [
           ElevatedButton(
             onPressed: () {
