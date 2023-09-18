@@ -66,7 +66,7 @@ class EditarProfileState extends State<EditarProfile> {
                               context,
                               MaterialPageRoute(
                                   builder: (context) =>
-                                      const Cambiarcontrasena()),
+                                      Cambiarcontrasena()),
                             );
                           },
                           child: const Text(
